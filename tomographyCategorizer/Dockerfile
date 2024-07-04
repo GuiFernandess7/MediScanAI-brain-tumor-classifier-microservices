@@ -6,12 +6,20 @@ ENV TF_ENABLE_ONEDNN_OPTS=0
 
 WORKDIR /app
 
+RUN useradd -m app
+RUN chown -R app:app /app
+
+USER app
+
+ENV PATH="/home/app/.local/bin:${PATH}"
+
 COPY requirements.txt /app/requirements.txt
 
-COPY ./package/tensorflow-2.7.0-cp38-cp38-linux_x86_64 /app/tensorflow-2.7.0-cp38-cp38-linux_x86_64
+COPY package/tensorflow-2.7.0-cp38-cp38-linux_x86_64.whl /app/tensorflow-2.7.0-cp38-cp38-linux_x86_64.whl
 
-RUN pip install --no-cache-dir -r /app/requirements.txt && \
-    pip install --no-cache-dir /app/tensorflow-2.7.0-cp38-cp38-linux_x86_64
+RUN pip install --upgrade pip && \
+    pip install --user --no-cache-dir -r /app/requirements.txt && \
+    pip install --user --no-cache-dir /app/tensorflow-2.7.0-cp38-cp38-linux_x86_64.whl
 
 COPY . /app
 
