@@ -12,7 +12,7 @@ WORKDIR /app
 RUN python3 -m venv /py && \
     /py/bin/pip install --upgrade pip && \
     /py/bin/pip install -r /app/requirements.txt && \
-    /py/bin/pip install ./package/tensorflow-2.7.0-cp38-cp38-linux_x86_64.whl && \
+    #/py/bin/pip install ./package/tensorflow-2.7.0-cp38-cp38-linux_x86_64.whl && \
     /py/bin/pip install uvicorn
 
 RUN adduser --disabled-password --no-create-home app && \
