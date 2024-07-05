@@ -5,6 +5,7 @@ LABEL maintainer="guilhermesampaio"
 ENV TF_CPP_MIN_LOG_LEVEL=2
 
 COPY ./requirements.txt /app/requirements.txt
+COPY models /app/models
 COPY . /app
 
 WORKDIR /app

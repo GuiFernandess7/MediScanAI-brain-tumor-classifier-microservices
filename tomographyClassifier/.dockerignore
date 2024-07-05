@@ -2,9 +2,8 @@
 # Ignore all by default
 *
 
-# Allow the package directory and .whl file
-!package/
-!package/tensorflow-2.7.0-cp38-cp38-linux_x86_64.whl
+# Allow the models directory
+!models
 
 # Allow the requirements file
 !requirements.txt

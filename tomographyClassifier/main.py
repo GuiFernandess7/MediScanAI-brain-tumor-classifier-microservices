@@ -1,4 +1,4 @@
-from fastapi import FastAPI, File, UploadFile, HTTPException
+from fastapi import FastAPI, File, UploadFile, HTTPException, Annotated
 from keras.models import load_model
 from tensorflow.keras.utils import img_to_array
 from PIL import Image
@@ -41,7 +41,7 @@ async def hello() -> str:
     return "Hello World"
 
 @app.post("/tomography/upload")
-async def upload(file: UploadFile = File(...)):
+async def upload(file: Annotated[bytes, File()]):
     if not file.filename.endswith(('.png', '.jpg', '.jpeg')):
         raise HTTPException(status_code=400, detail="File format not supported.")
 
